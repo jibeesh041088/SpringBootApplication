@@ -26,4 +26,9 @@ public class ItemService {
         ItemBean itemBean = itemMapper.getItem(id);
         return itemBean;
     }
+
+    public Boolean deleteItem(int id){
+        boolean isAdded = itemMapper.deleteItem(id) > 0;
+        return isAdded;
+    }
 }

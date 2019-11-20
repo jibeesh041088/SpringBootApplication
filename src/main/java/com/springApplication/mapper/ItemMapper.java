@@ -13,4 +13,7 @@ public interface ItemMapper {
 
     @Select("SELECT * FROM item where id = #{id}")
     public ItemBean getItem(@Param("id") int id);
+
+    @Update("UPDATE item SET is_deleted = true WHERE id = #{id}")
+    public int deleteItem(@Param("id") int id);
 }

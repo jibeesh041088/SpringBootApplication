@@ -33,4 +33,14 @@ public class ItemController {
         ItemBean itemBean = itemService.getItem(id);
         return itemBean;
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/delete/{id}")
+    public String deleteItem(@RequestBody @PathVariable("id") int id){
+        boolean isDeleted = itemService.deleteItem(id);
+        String response = "";
+        if (isDeleted) {
+            response = "Soft Delete Successfully!";
+        }
+        return response;
+    }
 }
