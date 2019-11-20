@@ -1,11 +1,9 @@
 package com.springApplication.controllers;
 
+import com.springApplication.bean.ItemBean;
 import com.springApplication.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/item")
@@ -27,5 +25,12 @@ public class ItemController {
             response = "Inserted Successfully!";
         }
         return response;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @ResponseBody
+    public ItemBean getItem(@RequestBody @PathVariable("id") int id){
+        ItemBean itemBean = itemService.getItem(id);
+        return itemBean;
     }
 }

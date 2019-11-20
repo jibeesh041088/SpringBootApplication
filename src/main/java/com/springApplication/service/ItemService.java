@@ -17,10 +17,13 @@ public class ItemService {
 
     public boolean insert(int category, float length, float width, float height, float weight, String createdAt){
         ItemBean itemBean = new ItemBean();
-
         Timestamp timestamp = Timestamp.valueOf(createdAt);
-
         boolean isAdded = itemMapper.insert(category,length, width, height, weight, timestamp) > 0;
         return isAdded;
+    }
+
+    public ItemBean getItem(int id){
+        ItemBean itemBean = itemMapper.getItem(id);
+        return itemBean;
     }
 }
