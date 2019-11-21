@@ -31,4 +31,9 @@ public class ItemService {
         boolean isAdded = itemMapper.deleteItem(id) > 0;
         return isAdded;
     }
+
+    public Boolean updateItem(int id, int category){
+        boolean isAdded = itemMapper.updateItem(id, category) > 0;
+        return isAdded;
+    }
 }

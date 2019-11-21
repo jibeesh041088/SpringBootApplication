@@ -20,4 +20,9 @@ public class ItemCategoryService {
         boolean isAdded = itemCategoryMapper.insert(name) > 0;
         return isAdded;
     }
+
+    public ItemCategoryBean getItemCategory(int category){
+        ItemCategoryBean itemCategoryBean = itemCategoryMapper.getItemCategory(category);
+        return itemCategoryBean;
+    }
 }

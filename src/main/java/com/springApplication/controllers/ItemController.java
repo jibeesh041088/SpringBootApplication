@@ -1,6 +1,8 @@
 package com.springApplication.controllers;
 
 import com.springApplication.bean.ItemBean;
+import com.springApplication.bean.ItemCategoryBean;
+import com.springApplication.service.ItemCategoryService;
 import com.springApplication.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ public class ItemController {
 
     @Autowired
     ItemService itemService;
+    @Autowired
+    ItemCategoryService itemCategoryService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String sayHello() {
@@ -40,6 +44,26 @@ public class ItemController {
         String response = "";
         if (isDeleted) {
             response = "Soft Delete Successfully!";
+        }
+        return response;
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, path = "/update/{id}/{category}")
+    public String updateItem(@RequestBody @PathVariable("id") int id, @RequestBody @PathVariable("category") int category){
+        String response = "";
+        ItemBean itemBean = itemService.getItem(id);
+        if(itemBean == null){
+            response = "Update item is not found";
+        }else{
+            ItemCategoryBean itemCategoryBean = itemCategoryService.getItemCategory(category);
+            if(itemCategoryBean == null){
+                response = "Update item category is not found";
+            }else{
+                boolean isUpdated = itemService.updateItem(id, category);
+                if (isUpdated) {
+                    response = "Update Successfully!";
+                }
+            }
         }
         return response;
     }

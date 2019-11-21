@@ -16,4 +16,7 @@ public interface ItemMapper {
 
     @Update("UPDATE item SET is_deleted = true WHERE id = #{id}")
     public int deleteItem(@Param("id") int id);
+
+    @Update("UPDATE item SET category = #{category} WHERE id = #{id}")
+    public int updateItem(@Param("id") int id, @Param("category") int category);
 }
