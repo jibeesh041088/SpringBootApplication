@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan
-public class SpringHelloApplication {
+public class SpringBootTestApplication {
     public static void main(String[] args){
-        SpringApplication.run(SpringHelloApplication.class, args);
+        SpringApplication.run(SpringBootTestApplication.class, args);
     }
 }
