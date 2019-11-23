@@ -54,7 +54,6 @@ public class ItemController {
         ItemBean itemBean = itemService.getItem(id);
         if(itemBean == null){
             response = "Update item is not found";
-            System.out.println("Test");
         }else{
             ItemCategoryBean itemCategoryBean = itemCategoryService.getItemCategory(category);
             if(itemCategoryBean == null){
