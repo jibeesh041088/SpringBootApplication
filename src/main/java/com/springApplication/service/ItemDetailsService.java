@@ -19,4 +19,9 @@ public class ItemDetailsService {
          boolean isAdded = itemDetailsMapper.insert(itemId, languageCode, name, description, createdAt) > 0;
         return isAdded;
     }
+
+    public ItemDetailsBean getData(int itemId, int languageCode){
+        ItemDetailsBean itemDetailsBean = itemDetailsMapper.getData(itemId, languageCode);
+        return itemDetailsBean;
+    }
 }

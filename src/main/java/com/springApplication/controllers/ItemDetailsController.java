@@ -17,11 +17,17 @@ public class ItemDetailsController {
     @RequestMapping(method = RequestMethod.POST, path = "/insert/{item_id}/{language_code}/{name}/{description}/{createdAt}")
     public String createItemDetails(@PathVariable("item_id") int itemId, @PathVariable("language_code") int languageCode, @PathVariable("name") String name, @PathVariable("description") String description, @PathVariable("createdAt") String createdAt){
         Timestamp timestamp = Timestamp.valueOf(createdAt);
-         boolean isAdded = itemDetailsService.insert(itemId,languageCode, name, description, timestamp);
-         String response = "";
-         if(isAdded){
-             response = "Insert Successfully";
-         }
+        String response = "";
+        ItemDetailsBean itemDetailsBean = itemDetailsService.getData(itemId, languageCode);
+        if(itemDetailsBean == null){
+            boolean isAdded = itemDetailsService.insert(itemId,languageCode, name, description, timestamp);
+            if(isAdded){
+                response = "Insert Successfully";
+            }
+        }else{
+            response = "Item detail is already exists on itemId and languageCode";
+        }
+
         return response;
     }
 }
